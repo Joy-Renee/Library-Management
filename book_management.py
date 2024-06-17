@@ -1,8 +1,8 @@
 from database import session
 from model import Book
 
-def add_book(title, author, year_of_publish, copies):
-    new_book = Book(title=title, author=author, year_of_publish=year_of_publish, copies=copies)
+def add_book(title, author, copies):
+    new_book = Book(title=title, author=author, copies=copies)
     session.add(new_book)
     session.commit()
 

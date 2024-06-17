@@ -13,7 +13,7 @@ class Book(Base):
     title = Column(String, nullable=False)
     author = Column(String, nullable=False)
     # year_of_publish = Column(datetime, nullable=False)
-    copies = Column(Integer, default= 1)
+    copies = Column(Integer )
     # availability = Column(Boolean, default=True)
 
 # class Student(Base):
