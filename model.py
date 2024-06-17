@@ -1,11 +1,11 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Date ,create_engine
 from sqlalchemy.orm import declarative_base, relationship
+from datetime import date
 
 
 
 
 Base = declarative_base()
-
 class Book(Base):
     __tablename__ = "books"
 
@@ -43,8 +43,13 @@ class Status(Base):
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey('users.id'))
     book_id = Column(Integer, ForeignKey('books.id'))
-    borrowed_date = Column(Date)
-    returned_date = Column(Date)
+    borrowed_date = Column(Date, default=date.today)
+    returned_date = Column(Date, nullable=True)
     book = relationship('Book')
     user = relationship('User')
+
+    def __init__(self, book_id, user_id, status_date=None):
+        self.book_id = book_id
+        self.user_id = user_id
+        self.status_date = status_date if status_date else date.today()
 

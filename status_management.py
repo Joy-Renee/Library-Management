@@ -15,8 +15,8 @@ def status_book(book_id, user_id):
 
 def return_book(status_id):
     status = session.query(Status).filter_by(id=status_id).first()
-    if status and status.return_date is None:
-        status.return_date = date.today()
+    if status and status.returned_date is None:
+        status.returned_date = date.today()
         book = session.query(Book).filter_by(id=status.book_id).first()
         book.copies += 1
         session.commit()
